@@ -13,6 +13,7 @@ function Home() {
                     <div className="d-flex flex-column gap-3">
                         <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.INTRODUCTION')} </button>
                         <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.PLAY')} </button>
+                        <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.STUDY')} </button>
                         <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.ABOUT')} </button>
                     </div>
                 </div>

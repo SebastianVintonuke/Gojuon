@@ -43,16 +43,31 @@ function Game() {
 export default Game;
 
 function createRandomGame(kana: Kana): Array<Guess> {
-    return [
-        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
-    ];
+    if (kana) {
+        return [
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
+        ];
+    } else {
+        return [
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
+        ];
+    } //TODO LATER
 }

@@ -3,15 +3,16 @@ import { useState } from 'react';
 import Home from "./components/home/home";
 import Intro from "./components/intro/intro";
 import Game from "./components/game/game";
+import Study from "./components/study/study";
 import About from "./components/about/about";
 
-type App = 'home' | 'intro' | 'game' | 'about';
+type App = 'home' | 'intro' | 'game' | 'study' | 'about';
 
 function App() {
   const { t } = useTranslation();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [currentApp, setCurrentApp] = useState('home');
+  const [currentApp, setCurrentApp] = useState('study');
 
   let closeMenu = () => {
     setMenuIsOpen(false);
@@ -46,6 +47,7 @@ function App() {
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('home')}> {t('MAIN_MENU.HOME')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('intro')}> {t('MAIN_MENU.INTRODUCTION')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('game')}> {t('MAIN_MENU.PLAY')} </button>
+            <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('study')}> {t('MAIN_MENU.STUDY')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('about')}> {t('MAIN_MENU.ABOUT')} </button>
           </div>
         </div>
@@ -56,6 +58,7 @@ function App() {
         {currentApp === 'home' ? <Home></Home> : null}
         {currentApp === 'intro' ? <Intro></Intro> : null}
         {currentApp === 'game' ? <Game></Game> : null}
+        {currentApp === 'study' ? <Study></Study> : null}
         {currentApp === 'about' ? <About></About> : null}
       </div>
     </div>

@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import "./intro.scss";
 
 function Intro() {
-    const { t } = useTranslation();
     const [current, setCurrent] = useState(0);
 
     let onClick = () => {
