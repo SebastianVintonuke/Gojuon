@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-function Home() {
+type App = 'home' | 'intro' | 'game' | 'study' | 'about';
+
+function Home({setCurrentApp} : { setCurrentApp: Dispatch<SetStateAction<App>> }) {
     const { t } = useTranslation();
 
     // TO DO MOVER A ALGO MAS GENERAL
@@ -30,10 +32,10 @@ function Home() {
                     <span className="outline" style={{ fontSize: 1.5 + 'em' }}> 五十音 </span>
                 </div>
                 <div className="d-flex flex-column gap-3">
-                    <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.INTRODUCTION')} </button>
-                    <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.PLAY')} </button>
-                    <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.STUDY')} </button>
-                    <button className="btn btn-outline-primary btn-lg"> {t('MAIN_MENU.ABOUT')} </button>
+                    <button className="btn btn-outline-primary btn-lg" onClick={() => setCurrentApp('intro')}> {t('MAIN_MENU.INTRODUCTION')}</button>
+                    <button className="btn btn-outline-primary btn-lg" onClick={() => setCurrentApp('game')}> {t('MAIN_MENU.PLAY')} </button>
+                    <button className="btn btn-outline-primary btn-lg" onClick={() => setCurrentApp('study')}> {t('MAIN_MENU.STUDY')} </button>
+                    <button className="btn btn-outline-primary btn-lg" onClick={() => setCurrentApp('about')}> {t('MAIN_MENU.ABOUT')} </button>
                 </div>
             </div>
         </div>
