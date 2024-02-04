@@ -11,8 +11,8 @@ type App = 'home' | 'intro' | 'game' | 'study' | 'about';
 function App() {
   const { t } = useTranslation();
 
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [currentApp, setCurrentApp] = useState('game');
+  const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
+  const [currentApp, setCurrentApp] = useState<App>('game');
 
   // TO DO MOVER A ALGO MAS GENERAL
   const [isVerticalScreen, setIsVerticalScreen] = useState(
@@ -31,15 +31,15 @@ function App() {
   }, []);
   //
 
-  let closeMenu = () => {
+  const closeMenu = () => {
     setMenuIsOpen(false);
   };
 
-  let openMenu = () => {
+  const openMenu = () => {
     setMenuIsOpen(true);
   }
 
-  let openApp = (app: App) => {
+  const openApp = (app: App) => {
     setCurrentApp(app);
     closeMenu();
   }
@@ -70,7 +70,7 @@ function App() {
       </div>
       {/* Apps */}
       <div className="d-flex flex-column flex-fill">
-        {currentApp === 'home' ? <Home></Home> : null}
+        {currentApp === 'home' ? <Home setCurrentApp={setCurrentApp}></Home> : null}
         {currentApp === 'intro' ? <Intro></Intro> : null}
         {currentApp === 'game' ? <Game></Game> : null}
         {currentApp === 'study' ? <Study></Study> : null}
