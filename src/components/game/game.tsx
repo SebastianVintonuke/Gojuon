@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Kana, KANAS } from "./kanas";
 
 const N_TO_GUESS = 10;
@@ -11,6 +11,25 @@ type Guess = {
 
 function Game() {
     const [current, setCurrent] = useState(0);
+
+
+
+    // TO DO MOVER A ALGO MAS GENERAL
+    const [isVerticalScreen, setIsVerticalScreen] = useState(
+        window.innerHeight > window.innerWidth
+    );
+    useEffect(() => {
+        const manejarCambioOrientacion = () => {
+            setIsVerticalScreen(window.innerHeight > window.innerWidth);
+        };
+
+        window.addEventListener('resize', manejarCambioOrientacion);
+
+        return () => {
+            window.removeEventListener('resize', manejarCambioOrientacion);
+        };
+    }, []);
+    //
 
     const guess: Array<Guess> = createRandomGame(KANAS.HIRAGANA);
 
@@ -25,15 +44,14 @@ function Game() {
             alert('¡Anta Baka!');
         }
     };
-
     return (
-        <div className="container">
-            <div className="d-flex justify-content-center">
-                <span style={{ fontSize: 20 + 'em' }}> {guess[current].kana} </span>
+        <div className="container d-flex flex-fill justify-content-center" style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
+            <div className="d-flex flex-grow-1 justify-content-center align-items-center">
+                <span style={{ fontSize: (isVerticalScreen ? '50vw' : '50vh') }}> {guess[current].kana} </span>
             </div>
-            <div className="d-flex flex-column justify-content-center gap-3">
+            <div className="d-flex flex-grow-1 flex-column justify-content-center align-items-center gap-3">
                 {guess[current].options.map((option, index) => (
-                    <button key={index} className="btn btn-primary btn-lg text-uppercase" onClick={() => tryOption(option)}> { option } </button>
+                    <button key={index} className="btn btn-primary w-100 btn-lg text-uppercase" onClick={() => tryOption(option)}> {option} </button>
                 ))}
             </div>
         </div>
