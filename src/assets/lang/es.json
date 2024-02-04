@@ -1,7 +1,8 @@
 {
     "MAIN_MENU": {
+        "HOME": "Inicio",
         "INTRODUCTION": "Introduccion",
         "PLAY": "Jugar",
-        "ABOUT": "Info"
+        "ABOUT": "Informacion"
     }
 }
