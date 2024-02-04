@@ -45,7 +45,7 @@ function App() {
   }
 
   return (
-    <div className="d-flex height-all" style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
+    <div className="d-flex width-all-screen height-all-screen" style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
       {/* Menu */}
       <div className="m-3">
         <button type="button" className="btn btn-outline-primary" onClick={() => openMenu()}>
@@ -82,6 +82,7 @@ function App() {
 
 export default App
 
+// TO DO MOVER A ALGO MAS GENERAL
 export const isMobileOrTablet = () => {
   const userAgent = navigator.userAgent;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
@@ -90,3 +91,4 @@ export const isMobileOrTablet = () => {
 export const isVerticalScreen = () => {
   return window.innerHeight > window.innerWidth;
 };
+//
