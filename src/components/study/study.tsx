@@ -22,7 +22,7 @@ function Study() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body d-flex flex-column justify-content-center gap-3">
-                            <img src={`src/assets/img/kanas/${tab}_${character.romaji}_stroke_order_animation.gif`} className="img-thumbnail"></img>
+                            <img src={`src/assets/img/kanas/${tab}_${character.romaji.toLowerCase()}_stroke_order_animation.gif`} className="img-thumbnail"></img>
                             <div className="d-flex align-items-center justify-content-evenly">
                                 <span className="fs-2"> Rōmaji: {character.romaji} </span>
                             </div>
