@@ -1,6 +1,6 @@
-$primary:            #F2E8C6;
-$secondary:          #952323;
-$primary-emphasis:   #DAD4B5;
+$primary: #F2E8C6;
+$secondary: #952323;
+$primary-emphasis: #DAD4B5;
 $secondary-emphasis: #A73121;
 
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -19,9 +19,32 @@ $font-family-sans-serif: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto,
     height: 100vh;
 }
 
-
 body {
     color: $primary;
     background-color: $secondary;
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f2e8c6' fill-opacity='0.16' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.character_home {
+    opacity: 0.75;
+    z-index: -1;
+}
+
+.outline {
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+/* PC */
+@media only screen and (min-width: 1024px) {
+
 }

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from "./components/home/home";
 import Intro from "./components/intro/intro";
 import Game from "./components/game/game";
@@ -12,7 +12,24 @@ function App() {
   const { t } = useTranslation();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [currentApp, setCurrentApp] = useState('study');
+  const [currentApp, setCurrentApp] = useState('game');
+
+  // TO DO MOVER A ALGO MAS GENERAL
+  const [isVerticalScreen, setIsVerticalScreen] = useState(
+    window.innerHeight > window.innerWidth
+  );
+  useEffect(() => {
+    const manejarCambioOrientacion = () => {
+      setIsVerticalScreen(window.innerHeight > window.innerWidth);
+    };
+
+    window.addEventListener('resize', manejarCambioOrientacion);
+
+    return () => {
+      window.removeEventListener('resize', manejarCambioOrientacion);
+    };
+  }, []);
+  //
 
   let closeMenu = () => {
     setMenuIsOpen(false);
@@ -28,14 +45,13 @@ function App() {
   }
 
   return (
-    <div className="d-flex flex-column height-all">
+    <div className="d-flex height-all" style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
       {/* Menu */}
       <div className="m-3">
         <button type="button" className="btn btn-outline-primary" onClick={() => openMenu()}>
-          <i className="fa fa-solid fa-bars m-1 fs-1"></i>
+          <i className="fa fa-solid fa-bars fs-1"></i>
         </button>
       </div>
-
       {/* Off canvas menu */}
       <div className={`offcanvas offcanvas-start bg-primary ${menuIsOpen ? 'show' : ''}`}>
         <div className="offcanvas-header">
@@ -52,7 +68,6 @@ function App() {
           </div>
         </div>
       </div>
-
       {/* Apps */}
       <div className="d-flex flex-column flex-fill">
         {currentApp === 'home' ? <Home></Home> : null}
@@ -66,3 +81,12 @@ function App() {
 }
 
 export default App
+
+export const isMobileOrTablet = () => {
+  const userAgent = navigator.userAgent;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+};
+
+export const isVerticalScreen = () => {
+  return window.innerHeight > window.innerWidth;
+};
