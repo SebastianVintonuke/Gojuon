@@ -10,7 +10,7 @@ function Intro() {
 
     return (
         <div className="d-flex justify-content-center align-items-end w-100 h-100" onClick={() => onClick()}>
-            <img className="position-absolute character wobble-hor-bottom " src="src\assets\img\asuka_1.png"></img>
+            <img className="position-absolute character wobble-hor-bottom " src="/img/asuka_1.png"></img>
             <div className="text-background w-100 h-25 p-5">
                 <h6 className="fs-3">{ CONVERSATION[current].characterName }</h6>
                 <span className="fs-5">{ CONVERSATION[current].text }</span>
