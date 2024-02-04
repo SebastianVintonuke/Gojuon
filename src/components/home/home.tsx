@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import './home.scss';
 
 type App = 'home' | 'intro' | 'game' | 'study' | 'about';
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Kana, KANAS } from "./kanas";
 import { DateTime } from 'luxon';
 
 const N_TO_GUESS = 10;
@@ -12,8 +11,6 @@ type Guess = {
 
 function Game() {
     const [current, setCurrent] = useState(0);
-
-
 
     // TO DO MOVER A ALGO MAS GENERAL
     const [isVerticalScreen, setIsVerticalScreen] = useState(
@@ -32,7 +29,7 @@ function Game() {
     }, []);
     //
 
-    const guess: Array<Guess> = createRandomGame(KANAS.HIRAGANA);
+    const guess: Array<Guess> = createRandomGame();
 
     let getBarColor = (progress: number) => {
         if (progress > 67) {
@@ -84,32 +81,17 @@ function Game() {
 
 export default Game;
 
-function createRandomGame(kana: Kana): Array<Guess> {
-    if (kana) {
-        return [
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
-        ];
-    } else {
-        return [
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
-            { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
-            { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
-        ];
-    } //TODO LATER
+function createRandomGame(): Array<Guess> {
+    return [
+        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] },
+        { kana: 'あ', right: 'A', options: ['KA', 'MA', 'SA', 'A'] },
+        { kana: '女', right: 'ME', options: ['SE', 'TE', 'ME', 'E'] }
+    ];
 }
