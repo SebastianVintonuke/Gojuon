@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import Home from "./components/home/home";
-import Intro from "./components/intro/intro";
-import Game from "./components/game/game";
-import Study from "./components/study/study";
-import About from "./components/about/about";
+import Home from "./apps/home/home";
+import Intro from "./apps/intro/intro";
+import Game from "./apps/game/game";
+import Study from "./apps/study/study";
+import About from "./apps/about/about";
+import LanguageModal from './components/LanguageModal';
 
 type App = 'home' | 'intro' | 'game' | 'study' | 'about';
 
@@ -12,7 +13,7 @@ function App() {
   const { t } = useTranslation();
 
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
-  const [currentApp, setCurrentApp] = useState<App>('game');
+  const [currentApp, setCurrentApp] = useState<App>('home');
 
   // TO DO MOVER A ALGO MAS GENERAL
   const [isVerticalScreen, setIsVerticalScreen] = useState(
@@ -58,16 +59,23 @@ function App() {
           <h5 className="offcanvas-title"> Menu </h5>
           <button type="button" className="btn-close" onClick={() => closeMenu()}></button>
         </div>
-        <div className="offcanvas-body">
-          <div className="d-flex flex-column flex-fill gap-3 mt-4">
+        <div className="offcanvas-body d-flex flex-column justify-content-between">
+          <div className="d-flex flex-column gap-3">
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('home')}> {t('MAIN_MENU.HOME')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('intro')}> {t('MAIN_MENU.INTRODUCTION')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('game')}> {t('MAIN_MENU.PLAY')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('study')}> {t('MAIN_MENU.STUDY')} </button>
             <button type="button" className="btn btn-secondary text-primary" onClick={() => openApp('about')}> {t('MAIN_MENU.ABOUT')} </button>
           </div>
+          <div className="mt-auto mb-0 d-flex justify-content-end">
+            <button type="button" className="btn btn-secondary text-primary" data-bs-toggle="modal" data-bs-target="#languageModal">
+              <i className="fa fa-language fs-1"></i>
+            </button>
+          </div>
         </div>
       </div>
+      { /* Modal */}
+      <LanguageModal dataBsTarget={"languageModal"} />
       {/* Apps */}
       <div className="d-flex flex-column flex-fill">
         {currentApp === 'home' ? <Home setCurrentApp={setCurrentApp}></Home> : null}
