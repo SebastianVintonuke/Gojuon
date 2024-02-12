@@ -16,23 +16,23 @@ function Study() {
     }
 
     return (
-        <div className="container d-flex flex-column justify-content-center">
-            <div className="btn-group mx-2 my-3">
-                <button type="button" className={"btn btn-outline-primary " + (isHiraganaSelected() ? "active" : "")} onClick={() => setTab('Hiragana')}> Hiragana </button>
-                <button type="button" className={"btn btn-outline-primary " + (!isHiraganaSelected() ? "active" : "")} onClick={() => setTab('Katakana')}> Katakana </button>
+        <div className='container d-flex flex-column justify-content-center'>
+            <div className='btn-group mx-2 my-3'>
+                <button type='button' className={'btn btn-outline-primary ' + (isHiraganaSelected() ? 'active' : '')} onClick={() => setTab('Hiragana')}> Hiragana </button>
+                <button type='button' className={'btn btn-outline-primary ' + (!isHiraganaSelected() ? 'active' : '')} onClick={() => setTab('Katakana')}> Katakana </button>
             </div>
-            <div className="d-flex flex-column justify-content-center h-100">
+            <div className='d-flex flex-column justify-content-center h-100'>
                 {Object.keys(getKanaSelected()).map((key) => (
-                    <div className="container text-center my-3">
+                    <div className='container text-center my-3'>
                         <h5> {key} </h5>
                         {getKanaSelected()[key as KanaKeys].map((_, index: number) => (
-                            <div className="row my-3">
+                            <div className='row my-3'>
                                 {getKanaSelected()[key as KanaKeys][index].map((character) => (
-                                    <div className="col">
+                                    <div className='col'>
                                         {character ?
-                                            <div className="d-flex flex-column" data-bs-toggle="modal" data-bs-target="#kanaModal" onClick={() => setCharacter(character)}>
-                                                <span className="badge text-bg-primary fs-4">{character ? character.char : ''}</span>
-                                                <span className="fs-6"> {character ? character.romaji : ''} </span>
+                                            <div className='d-flex flex-column' data-bs-toggle='modal' data-bs-target='#kanaModal' onClick={() => setCharacter(character)}>
+                                                <span className='badge text-bg-primary fs-4'>{character ? character.char : ''}</span>
+                                                <span className='fs-6'> {character ? character.romaji : ''} </span>
                                             </div>
                                             : ''}
                                     </div>
