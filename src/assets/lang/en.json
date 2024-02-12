@@ -5,5 +5,15 @@
         "PLAY": "Play",
         "STUDY": "Study",
         "ABOUT": "About"
+    },
+    "STUDY": {
+        "PRONUNCIATION": "Pronunciation"
+    },
+    "ABOUT": {
+        "BUGS_OR_SUGGESTIONS": "Bugs or suggestions:",
+        "THANK_YOU_FOR_REPORTING_ANY_BUG_OR_SEGGESTIONS": "Thanks you for reporting any bug or suggestions",
+        "REPORT_A_BUG": "Report a bug",
+        "DEVELOPED_BY": "Developed by:",
+        "MY_WEB_PAGE": "My web page"
     }
 }

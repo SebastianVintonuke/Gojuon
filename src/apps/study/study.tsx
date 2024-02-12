@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { KanaKeys, HIRAGANA, KATAKANA } from '../../assets/kanas.ts';
+import './study.scss';
+import KanaModal from './kanaModal.tsx';
 
 function Study() {
-    const [tab, setTab] = useState('Hiragana');
-    const [character, setCharacter] = useState({ char: '', romaji: '' });
+    const [tab, setTab] = useState<'Hiragana' | 'Katakana'>('Hiragana');
+    const [character, setCharacter] = useState({ char: '', romaji: '', sound: '' });
 
     let getKanaSelected = () => {
         return tab === 'Hiragana' ? HIRAGANA : KATAKANA
@@ -15,23 +17,6 @@ function Study() {
 
     return (
         <div className="container d-flex flex-column justify-content-center">
-            { /* Modal */}
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content bg-primary text-dark">
-                        <div className="modal-header">
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body d-flex flex-column justify-content-center gap-3">
-                            <img src={`/img/kanas/${tab}_${character.romaji.toLowerCase()}_stroke_order_animation.gif`} className="img-thumbnail"></img>
-                            <div className="d-flex align-items-center justify-content-evenly">
-                                <span className="fs-2"> Rōmaji: {character.romaji} </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            { /* Body */ }
             <div className="btn-group mx-2 my-3">
                 <button type="button" className={"btn btn-outline-primary " + (isHiraganaSelected() ? "active" : "")} onClick={() => setTab('Hiragana')}> Hiragana </button>
                 <button type="button" className={"btn btn-outline-primary " + (!isHiraganaSelected() ? "active" : "")} onClick={() => setTab('Katakana')}> Katakana </button>
@@ -45,7 +30,7 @@ function Study() {
                                 {getKanaSelected()[key as KanaKeys][index].map((character) => (
                                     <div className="col">
                                         {character ?
-                                            <div className="d-flex flex-column" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => setCharacter(character)}>
+                                            <div className="d-flex flex-column" data-bs-toggle="modal" data-bs-target="#kanaModal" onClick={() => setCharacter(character)}>
                                                 <span className="badge text-bg-primary fs-4">{character ? character.char : ''}</span>
                                                 <span className="fs-6"> {character ? character.romaji : ''} </span>
                                             </div>
@@ -57,6 +42,7 @@ function Study() {
                     </div>
                 ))}
             </div>
+            <KanaModal kanaModalHandler={{ id: 'kanaModal', tab, character  }}></KanaModal>
         </div>
     )
 }

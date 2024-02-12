@@ -5,5 +5,15 @@
         "PLAY": "Jugar",
         "STUDY": "Estudiar",
         "ABOUT": "Informacion"
+    },
+    "STUDY": {
+        "PRONUNCIATION": "Pronunciación"
+    },
+    "ABOUT": {
+        "BUGS_OR_SUGGESTIONS": "Errores o sugerencias:",
+        "THANK_YOU_FOR_REPORTING_ANY_BUG_OR_SEGGESTIONS": "Gracias por informar cualquier error o sugerencia",
+        "REPORT_A_BUG": "Reportar un error",
+        "DEVELOPED_BY": "Desarrollado por:",
+        "MY_WEB_PAGE": "Mi pagina web"
     }
 }
