@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { DateTime } from 'luxon';
+import { useState } from 'react';
+import { useScreenOrientation } from '../../utils/screenOrientation';
+import { GoButton } from '../../components';
 
 const N_TO_GUESS = 10;
 
@@ -10,36 +11,10 @@ type Guess = {
 }
 
 function Game() {
+    const isVerticalScreen = useScreenOrientation();
     const [current, setCurrent] = useState(0);
 
-    // TO DO MOVER A ALGO MAS GENERAL
-    const [isVerticalScreen, setIsVerticalScreen] = useState(
-        window.innerHeight > window.innerWidth
-    );
-    useEffect(() => {
-        const manejarCambioOrientacion = () => {
-            setIsVerticalScreen(window.innerHeight > window.innerWidth);
-        };
-
-        window.addEventListener('resize', manejarCambioOrientacion);
-
-        return () => {
-            window.removeEventListener('resize', manejarCambioOrientacion);
-        };
-    }, []);
-    //
-
     const guess: Array<Guess> = createRandomGame();
-
-    let getBarColor = (progress: number) => {
-        if (progress > 67) {
-            return 'bg-success'
-        } else if (progress > 34) {
-            return 'bg-warning'
-        } else {
-            return 'bg-danger'
-        }
-    }
 
     const tryOption = (option: string) => {
         if (guess[current].right === option) {
@@ -53,26 +28,18 @@ function Game() {
         }
     };
 
-    const START = DateTime.now();
-    const FINISH = START.plus({ minutes: 1 });
-    const TIME = START.diff(FINISH);
-    console.log(TIME);
-
     return (
         <div className="container d-flex flex-column flex-fill">
-            <div className="m-1">
-                <div className="progress" role="progressbar">
-                    <div className={"progress-bar progress-bar-striped progress-bar-animated " + getBarColor(70)} style={{ width: 70 + '%' }}></div>
-                </div>
-            </div>
             <div className="d-flex flex-fill justify-content-center" style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
                 <div className="d-flex flex-grow-1 justify-content-center align-items-center">
                     <span style={{ fontSize: (isVerticalScreen ? '50vw' : '50vh') }}> {guess[current].kana} </span>
                 </div>
-                <div className="d-flex flex-grow-1 flex-column justify-content-center align-items-center gap-3">
-                    {guess[current].options.map((option, index) => (
-                        <button key={index} className="btn btn-primary w-100 btn-lg text-uppercase" onClick={() => tryOption(option)}> {option} </button>
-                    ))}
+                <div className="d-flex flex-grow-1 justify-content-center align-items-center">
+                    <div className="gap-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridTemplateRows: 'repeat(2, 1fr)' }}>
+                        {guess[current].options.map((option, index) => (
+                            <GoButton key={index} buttonHandler={{ label: option, onClick: () => tryOption(option) }}></GoButton>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
