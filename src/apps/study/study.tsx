@@ -31,7 +31,7 @@ function Study() {
                                     <div className='col'>
                                         {character ?
                                             <div className='d-flex flex-column align-items-center' data-bs-toggle='modal' data-bs-target='#kanaModal' onClick={() => setCharacter(character)}>
-                                                <span className='d-flex align-items-center justify-content-center fs-4 b-red t-white' style={{ width: '2.5em', height: '2.5em', borderRadius: '50%' }}>{character ? character.char : ''}</span>
+                                                <span className='d-flex align-items-center justify-content-center fs-4 b-red t-white' style={{ width: '2em', height: '2em', borderRadius: '50%' }}>{character ? character.char : ''}</span>
                                                 <span className='fs-6 t-white'> {character ? character.romaji : ''} </span>
                                             </div>
                                             : ''}
