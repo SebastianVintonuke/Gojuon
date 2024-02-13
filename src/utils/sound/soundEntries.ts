@@ -1,5 +1,5 @@
-import { HIRAGANA, KanaKeys } from "../../assets/kanas";
-import { Entry } from "./soundPlayer";
+import { HIRAGANA, KanaKeys } from '../../assets/kanas';
+import { Entry } from './soundPlayer';
 
 export const SoundEntries = getSoundEntries();
 

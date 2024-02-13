@@ -26,24 +26,24 @@ function GoMenu({ menuHandler }: { menuHandler: MenuHandler }) {
     }
 
     return (
-        <div className="m-3">
-            <GoButtonIcon buttonHandler={{ icon: 'fa fa-sharp fa-solid fa-bars', onClick: () => openMenu() }}></GoButtonIcon>
-            <div className={`offcanvas offcanvas-start bg-primary ${menuIsOpen ? 'show' : ''}`}>
-                <div className="offcanvas-header">
-                    <h5 className="offcanvas-title"> Menu </h5>
-                    <button type="button" className="btn-close" onClick={() => closeMenu()}></button>
+        <div className='m-3'>
+            <GoButtonIcon buttonHandler={{ className: 'b-red bo-red t-white', icon: 'fa fa-sharp fa-solid fa-bars', onClick: () => openMenu() }}></GoButtonIcon>
+            <div className={`offcanvas offcanvas-start b-red t-white ${menuIsOpen ? 'show' : ''}`}>
+                <div className='offcanvas-header'>
+                    <h5 className='offcanvas-title'> Menu </h5>
+                    <button className='btn fs-2 font-monospace b-red t-white' onClick={() => closeMenu()}> x </button>
                 </div>
-                <div className="offcanvas-body d-flex flex-column justify-content-between">
-                    <div className="d-flex flex-column gap-3">
-                        <button type="button" className="btn btn-secondary text-primary" onClick={() => onChange('home')}> {t('MAIN_MENU.HOME')} </button>
-                        <button type="button" className="btn btn-secondary text-primary" onClick={() => onChange('intro')}> {t('MAIN_MENU.INTRODUCTION')} </button>
-                        <button type="button" className="btn btn-secondary text-primary" onClick={() => onChange('game')}> {t('MAIN_MENU.PLAY')} </button>
-                        <button type="button" className="btn btn-secondary text-primary" onClick={() => onChange('study')}> {t('MAIN_MENU.STUDY')} </button>
-                        <button type="button" className="btn btn-secondary text-primary" onClick={() => onChange('about')}> {t('MAIN_MENU.ABOUT')} </button>
+                <div className='offcanvas-body d-flex flex-column justify-content-between'>
+                    <div className='d-flex flex-column gap-3'>
+                        <button className='btn bo-white t-white' onClick={() => onChange('home')}> {t('MAIN_MENU.HOME')} </button>
+                        <button className='btn bo-white t-white' onClick={() => onChange('intro')}> {t('MAIN_MENU.INTRODUCTION')} </button>
+                        <button className='btn bo-white t-white' onClick={() => onChange('game')}> {t('MAIN_MENU.PLAY')} </button>
+                        <button className='btn bo-white t-white' onClick={() => onChange('study')}> {t('MAIN_MENU.STUDY')} </button>
+                        <button className='btn bo-white t-white' onClick={() => onChange('about')}> {t('MAIN_MENU.ABOUT')} </button>
                     </div>
-                    <div className="mt-auto mb-0 d-flex justify-content-end">
-                        <button type="button" className="btn btn-secondary text-primary" data-bs-toggle="modal" data-bs-target="#languageModal">
-                            <i className="fa fa-language fs-1"></i>
+                    <div className='mt-auto mb-0 d-flex justify-content-end'>
+                        <button className='btn b-red bo-white t-white' data-bs-toggle='modal' data-bs-target='#languageModal'>
+                            <i className='fa fa-language fs-1'></i>
                         </button>
                     </div>
                 </div>

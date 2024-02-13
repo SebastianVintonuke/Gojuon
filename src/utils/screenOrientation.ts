@@ -25,12 +25,12 @@ export const useScreenOrientation = () => {
 /*
 useEffect(() => {
         const handleOrientationChange = () => {
-            const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+            const isPortrait = window.matchMedia('(orientation: portrait)').matches;
 
             if (isPortrait) {
-                document.body.style.transform = "rotate(90deg)";
+                document.body.style.transform = 'rotate(90deg)';
             } else {
-                document.body.style.transform = "rotate(0deg)";
+                document.body.style.transform = 'rotate(0deg)';
             }
         };
         window.addEventListener('orientationchange', handleOrientationChange);

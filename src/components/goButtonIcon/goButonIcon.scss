@@ -1,7 +1,3 @@
-$primary: #F2E8C6;
-$secondary: #952323;
-$primary-emphasis: #DAD4B5;
-$secondary-emphasis: #A73121;
 
 .go-button-icon {
     width: 50px;
@@ -12,8 +8,6 @@ $secondary-emphasis: #A73121;
     align-items: center;
     justify-content: center;
 
-    color: $primary;
-    background-color: $secondary;
-    border: 2px solid $primary;
-    border-radius: 15px;
+    border: 2px solid;
+    border-radius: 50%;
 }
