@@ -1,16 +1,6 @@
+import { BarsTransitions } from './BarsTransitions';
 
-const TRANSITION = `
-<div id="transition" style="position: absolute; width: 100vw; height: 100vh;">
-    <div style="display: flex; width: 100%; height: 100%;">
-        <div id="transition_bar_1" style="z-index: 10; background-color: white; height: 100%; flex-grow: 1; transform: translateY(-100vh); transition: transform 0.5s ease-in-out;"></div>
-        <div id="transition_bar_2" style="z-index: 10; background-color: black; height: 100%; flex-grow: 1; transform: translateY(100vh); transition: transform 0.5s ease-in-out;"></div>
-        <div id="transition_bar_3" style="z-index: 10; background-color: white; height: 100%; flex-grow: 1; transform: translateY(-100vh); transition: transform 0.5s ease-in-out;"></div>
-        <div id="transition_bar_4" style="z-index: 10; background-color: black; height: 100%; flex-grow: 1; transform: translateY(100vh); transition: transform 0.5s ease-in-out;"></div>
-        <div id="transition_bar_5" style="z-index: 10; background-color: white; height: 100%; flex-grow: 1; transform: translateY(-100vh); transition: transform 0.5s ease-in-out;"></div>
-        <div id="transition_bar_6" style="z-index: 10; background-color: black; height: 100%; flex-grow: 1; transform: translateY(100vh); transition: transform 0.5s ease-in-out;"></div>
-    </div>
-</div>`;
-
+const TRANSITION = '<div id="TransitionManager" style="position: absolute; width: 100vw; height: 100vh;"></div>';
 
 export class TransitionManager {
     private static instance: TransitionManager | null = null;
@@ -35,79 +25,51 @@ export class TransitionManager {
         return TransitionManager.instance;
     }
 
-    public runTransitionAndDoBetween(actionToDoBetween: Function): void {
+    public runTransition(actionToDoBetween: Function): void {
         this.target.insertAdjacentHTML('afterbegin', TRANSITION);
+        const TransitionManagerElm: HTMLElement | null = this.target.querySelector('#TransitionManager');
+        if (!TransitionManagerElm) { throw new Error('The main HTMLElement of the TransitionManager not found'); }
+        
+        // Scroll Disabled
+        const HtmlElement = this.document.querySelector('html');
+        if (!HtmlElement) { throw new Error('HMLElement not found in Document'); }
+        HtmlElement.style.overflowY = 'hidden';
+        
+        BarsTransitions.addAnimation(TransitionManagerElm);
 
-        let htmlElement = this.document.querySelector('html');
-        if (!htmlElement) { throw new Error('HMLElement not found in Document'); }
-        htmlElement.style.overflowY = 'hidden';
+        const FirstHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.firstHalfFlagId);
+        if (!FirstHalfFlag) { throw new Error('FirstHalfFlag not found'); }
+        FirstHalfFlag.addEventListener('transitionend', () => { this.doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween) });
+        
+        requestAnimationFrame(() => { BarsTransitions.animationIn(this.target); });
+    }
 
-        let transitionFlag = this.target.querySelector('#transition_bar_6');
-        if (!transitionFlag) { throw new Error('Transition Flag Element not found'); }
-        transitionFlag.addEventListener('transitionend', () => { this.removeTransition(); });
+    private doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween: Function) {
+        const FirstHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.firstHalfFlagId);
+        if (!FirstHalfFlag) { throw new Error('FirstHalfFlag not found'); }
+        FirstHalfFlag.removeEventListener('transitionend', () => { this.doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween) });
 
-        requestAnimationFrame(() => {
-            this.startAnimation();
-            requestAnimationFrame(() => {
-                setTimeout(() => actionToDoBetween(), 300);
-                requestAnimationFrame(() => {
-                    this.endAnimation();
-                });
-            });
-        });
+        actionToDoBetween();
+
+        const SecondHalfFlag = this.target.querySelector(BarsTransitions.secondHalfFlagId);
+        if (!SecondHalfFlag) { throw new Error('SecondHalfFlag not found'); }
+        SecondHalfFlag.addEventListener('transitionend', () => { this.removeTransition() });
+
+        requestAnimationFrame(() => { BarsTransitions.animationOut(this.target); });
     }
 
     private removeTransition() {
-        let transitionFlag: HTMLElement | null = this.target.querySelector('#transition_bar_6');
-        if (!transitionFlag) { throw new Error('transition Flag not found in DOM'); }
-        transitionFlag.removeEventListener('transitionend', () => { this.removeTransition(); });
+        const SecondHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.secondHalfFlagId);
+        if (!SecondHalfFlag) { throw new Error('SecondHalfFlag not found'); }
+        SecondHalfFlag.removeEventListener('transitionend', () => { this.removeTransition() });
 
-        let htmlElement = this.document.querySelector('html');
-        if (!htmlElement) { throw new Error('HMLElement not found in Document'); }
-        htmlElement.style.overflowY = 'auto';
+        // Scroll Enabled
+        const HtmlElement = this.document.querySelector('html');
+        if (!HtmlElement) { throw new Error('HMLElement not found in Document'); }
+        HtmlElement.style.overflowY = 'auto';
 
-        let transition = this.target.querySelector('#transition');
-        if (!transition) { throw new Error('Transition not found in DOM'); }
-        this.target.removeChild(transition);
-    }
-
-    private startAnimation() {
-        let transitionBar1: HTMLElement | null = this.target.querySelector('#transition_bar_1');
-        let transitionBar2: HTMLElement | null = this.target.querySelector('#transition_bar_2');
-        let transitionBar3: HTMLElement | null = this.target.querySelector('#transition_bar_3');
-        let transitionBar4: HTMLElement | null = this.target.querySelector('#transition_bar_4');
-        let transitionBar5: HTMLElement | null = this.target.querySelector('#transition_bar_5');
-        let transitionBar6: HTMLElement | null = this.target.querySelector('#transition_bar_6');
-
-        if (!transitionBar1 || !transitionBar2 || !transitionBar3 || !transitionBar4 || !transitionBar5 || !transitionBar6) {
-            throw new Error('Transition Element not found');
-        }
-
-        transitionBar1.style.transform = 'translateY(50vh)';
-        transitionBar2.style.transform = 'translateY(-50vh)';
-        transitionBar3.style.transform = 'translateY(50vh)';
-        transitionBar4.style.transform = 'translateY(-50vh)';
-        transitionBar5.style.transform = 'translateY(50vh)';
-        transitionBar6.style.transform = 'translateY(-50vh)';
-    }
-
-    private endAnimation() {
-        let transitionBar1: HTMLElement | null = this.target.querySelector('#transition_bar_1');
-        let transitionBar2: HTMLElement | null = this.target.querySelector('#transition_bar_2');
-        let transitionBar3: HTMLElement | null = this.target.querySelector('#transition_bar_3');
-        let transitionBar4: HTMLElement | null = this.target.querySelector('#transition_bar_4');
-        let transitionBar5: HTMLElement | null = this.target.querySelector('#transition_bar_5');
-        let transitionBar6: HTMLElement | null = this.target.querySelector('#transition_bar_6');
-
-        if (!transitionBar1 || !transitionBar2 || !transitionBar3 || !transitionBar4 || !transitionBar5 || !transitionBar6) {
-            throw new Error('Transition Element not found');
-        }
-
-        transitionBar1.style.transform = 'translateY(100vh)';
-        transitionBar2.style.transform = 'translateY(-100vh)';
-        transitionBar3.style.transform = 'translateY(100vh)';
-        transitionBar4.style.transform = 'translateY(-100vh)';
-        transitionBar5.style.transform = 'translateY(100vh)';
-        transitionBar6.style.transform = 'translateY(-100vh)';
+        const TransitionManagerElm = this.target.querySelector('#TransitionManager');
+        if (!TransitionManagerElm) { throw new Error('The main HTMLElement of the TransitionManager not found'); }
+        this.target.removeChild(TransitionManagerElm);
     }
 }
