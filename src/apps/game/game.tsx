@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useScreenOrientation } from '../../utils/screenOrientation';
-import { GoButton } from '../../components';
+import './game.scss';
 
 const N_TO_GUESS = 10;
 
@@ -32,12 +32,14 @@ function Game() {
         <div className='container d-flex flex-column flex-fill'>
             <div className='d-flex flex-fill justify-content-center' style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
                 <div className='d-flex flex-grow-1 justify-content-center align-items-center'>
-                    <span style={{ fontSize: (isVerticalScreen ? '50vw' : '50vh') }}> {guess[current].kana} </span>
+                    <div className='d-flex justify-content-center align-items-center text-center game-kana-circle b-red'>
+                        <span className='t-white' style={{ fontSize: (isVerticalScreen ? '50vw' : '50vh') }}> {guess[current].kana} </span>
+                    </div>
                 </div>
                 <div className='d-flex flex-grow-1 justify-content-center align-items-center'>
                     <div className='gap-5' style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gridTemplateRows: 'repeat(2, 1fr)' }}>
                         {guess[current].options.map((option, index) => (
-                            <GoButton key={index} buttonHandler={{ label: option, onClick: () => tryOption(option) }}></GoButton>
+                            <button key={index} className='btn fs-1 p-5 b-red t-white' onClick={() => tryOption(option)} style={{ borderRadius: '50%' }}>{option}</button>
                         ))}
                     </div>
                 </div>

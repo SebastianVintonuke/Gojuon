@@ -10,7 +10,7 @@ function Intro() {
 
     return (
         <div className='d-flex justify-content-center align-items-end w-100 h-100' onClick={() => onClick()}>
-            <div className='text-background w-100 h-25 p-5'>
+            <div className='text-background w-100 h-25 p-5 t-white'>
                 <h6 className='fs-3'>{ CONVERSATION[current].characterName }</h6>
                 <span className='fs-5'>{ CONVERSATION[current].text }</span>
             </div>

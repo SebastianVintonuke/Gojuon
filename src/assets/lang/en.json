@@ -15,5 +15,8 @@
         "REPORT_A_BUG": "Report a bug",
         "DEVELOPED_BY": "Developed by:",
         "MY_WEB_PAGE": "My web page"
+    },
+    "LANGUAGE_MODAL": {
+        "LANGUAGE": "Language"
     }
 }

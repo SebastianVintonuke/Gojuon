@@ -18,21 +18,21 @@ function Study() {
     return (
         <div className='container d-flex flex-column justify-content-center'>
             <div className='btn-group mx-2 my-3'>
-                <button type='button' className={'btn btn-outline-primary ' + (isHiraganaSelected() ? 'active' : '')} onClick={() => setTab('Hiragana')}> Hiragana </button>
-                <button type='button' className={'btn btn-outline-primary ' + (!isHiraganaSelected() ? 'active' : '')} onClick={() => setTab('Katakana')}> Katakana </button>
+                <button className={'btn bo-white' + (isHiraganaSelected() ? ' b-red t-white' : ' t-white')} onClick={() => setTab('Hiragana')}> Hiragana </button>
+                <button className={'btn bo-white' + (!isHiraganaSelected() ? ' b-red t-white' : ' t-white')} onClick={() => setTab('Katakana')}> Katakana </button>
             </div>
             <div className='d-flex flex-column justify-content-center h-100'>
                 {Object.keys(getKanaSelected()).map((key) => (
                     <div className='container text-center my-3'>
-                        <h5> {key} </h5>
+                        <h5 className='t-white'> {key} </h5>
                         {getKanaSelected()[key as KanaKeys].map((_, index: number) => (
                             <div className='row my-3'>
                                 {getKanaSelected()[key as KanaKeys][index].map((character) => (
                                     <div className='col'>
                                         {character ?
-                                            <div className='d-flex flex-column' data-bs-toggle='modal' data-bs-target='#kanaModal' onClick={() => setCharacter(character)}>
-                                                <span className='badge text-bg-primary fs-4'>{character ? character.char : ''}</span>
-                                                <span className='fs-6'> {character ? character.romaji : ''} </span>
+                                            <div className='d-flex flex-column align-items-center' data-bs-toggle='modal' data-bs-target='#kanaModal' onClick={() => setCharacter(character)}>
+                                                <span className='d-flex align-items-center justify-content-center fs-4 b-red t-white' style={{ width: '2.5em', height: '2.5em', borderRadius: '50%' }}>{character ? character.char : ''}</span>
+                                                <span className='fs-6 t-white'> {character ? character.romaji : ''} </span>
                                             </div>
                                             : ''}
                                     </div>
