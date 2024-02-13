@@ -22,7 +22,7 @@ function App() {
     }, []);
 
     const openApp = (app: Apps) => {
-        TransitionManager.getInstance().runTransitionAndDoBetween(() => setCurrentApp(app));
+        TransitionManager.getInstance().runTransition(() => setCurrentApp(app));
     }
 
     return (
