@@ -5,7 +5,7 @@ type Kana = {
 };
 export type KanaKeys = 'Monograph' | 'Diacritic' | 'Diagraph';
 
-type ConjugationsGroup = Array<PhonemesGroup>
+export type ConjugationsGroup = Array<PhonemesGroup>
 
 type PhonemesGroup = Array<JPCharacter | null>
 
