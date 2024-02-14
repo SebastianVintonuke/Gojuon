@@ -10,7 +10,7 @@ const BAR_TRANSITION = `
     </div>
 `;
 
-export class BarsTransitions {
+export class BarsTransition {
     public static firstHalfFlagId = '#BarTransition_Bar6';
     public static secondHalfFlagId = '#BarTransition_Bar6';
 

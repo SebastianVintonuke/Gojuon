@@ -10,8 +10,6 @@ function App() {
     const isVerticalScreen = useScreenOrientation();
     const [currentApp, setCurrentApp] = useState<Apps>('home');
 
-    
-
     useEffect(() => {
         SoundPlayer.getInstance(window.document, SoundEntries);
 

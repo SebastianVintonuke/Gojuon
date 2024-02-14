@@ -1,4 +1,5 @@
-import { BarsTransitions } from './BarsTransitions';
+import { GridTransition } from './gridTransition';
+import { BarsTransition } from './barsTransition';
 
 const TRANSITION = '<div id="TransitionManager" style="position: absolute; width: 100vw; height: 100vh;"></div>';
 
@@ -6,6 +7,7 @@ export class TransitionManager {
     private static instance: TransitionManager | null = null;
     private document: Document;
     private target: HTMLElement;
+    private transitionSelected!: GridTransition | BarsTransition;
 
     private constructor(document: Document, target: HTMLElement) {
         this.document = document;
@@ -26,6 +28,12 @@ export class TransitionManager {
     }
 
     public runTransition(actionToDoBetween: Function): void {
+        if (Math.random() < 0.5) {
+            this.transitionSelected = GridTransition;
+        } else {
+            this.transitionSelected  = BarsTransition;
+        }
+
         this.target.insertAdjacentHTML('afterbegin', TRANSITION);
         const TransitionManagerElm: HTMLElement | null = this.target.querySelector('#TransitionManager');
         if (!TransitionManagerElm) { throw new Error('The main HTMLElement of the TransitionManager not found'); }
@@ -35,31 +43,31 @@ export class TransitionManager {
         if (!HtmlElement) { throw new Error('HMLElement not found in Document'); }
         HtmlElement.style.overflowY = 'hidden';
         
-        BarsTransitions.addAnimation(TransitionManagerElm);
+        (this.transitionSelected as any).addAnimation(TransitionManagerElm);
 
-        const FirstHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.firstHalfFlagId);
+        const FirstHalfFlag: HTMLElement | null = this.target.querySelector((this.transitionSelected as any).firstHalfFlagId);
         if (!FirstHalfFlag) { throw new Error('FirstHalfFlag not found'); }
         FirstHalfFlag.addEventListener('transitionend', () => { this.doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween) });
         
-        requestAnimationFrame(() => { BarsTransitions.animationIn(this.target); });
+        requestAnimationFrame(() => { (this.transitionSelected as any).animationIn(this.target); });
     }
 
     private doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween: Function) {
-        const FirstHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.firstHalfFlagId);
+        const FirstHalfFlag: HTMLElement | null = this.target.querySelector((this.transitionSelected as any).firstHalfFlagId);
         if (!FirstHalfFlag) { throw new Error('FirstHalfFlag not found'); }
         FirstHalfFlag.removeEventListener('transitionend', () => { this.doActionBetweenAndRunSecondHalfAnimation(actionToDoBetween) });
 
         actionToDoBetween();
 
-        const SecondHalfFlag = this.target.querySelector(BarsTransitions.secondHalfFlagId);
+        const SecondHalfFlag = this.target.querySelector((this.transitionSelected as any).secondHalfFlagId);
         if (!SecondHalfFlag) { throw new Error('SecondHalfFlag not found'); }
         SecondHalfFlag.addEventListener('transitionend', () => { this.removeTransition() });
 
-        requestAnimationFrame(() => { BarsTransitions.animationOut(this.target); });
+        requestAnimationFrame(() => { (this.transitionSelected as any).animationOut(this.target); });
     }
 
     private removeTransition() {
-        const SecondHalfFlag: HTMLElement | null = this.target.querySelector(BarsTransitions.secondHalfFlagId);
+        const SecondHalfFlag: HTMLElement | null = this.target.querySelector((this.transitionSelected as any).secondHalfFlagId);
         if (!SecondHalfFlag) { throw new Error('SecondHalfFlag not found'); }
         SecondHalfFlag.removeEventListener('transitionend', () => { this.removeTransition() });
 
