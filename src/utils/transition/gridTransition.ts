@@ -116,12 +116,9 @@ export class GridTransition {
         }
 
         transitionBox1A.style.backgroundColor = '#871217';
-        transitionBox2B.style.backgroundColor = '#871217';
-        transitionBox3A.style.backgroundColor = '#871217';
-        transitionBox4B.style.backgroundColor = '#871217';
+        transitionBox3B.style.backgroundColor = '#871217';
         transitionBox5A.style.backgroundColor = '#871217';
-        transitionBox6B.style.backgroundColor = '#871217';
-        transitionBox7A.style.backgroundColor = '#871217';
+        transitionBox7B.style.backgroundColor = '#871217';
 
         transitionBox1A.style.transform = 'rotateY(90deg)';
         transitionBox2A.style.transform = 'translateX(-100vw)';
