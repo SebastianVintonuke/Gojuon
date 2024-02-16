@@ -5,7 +5,7 @@ import { GoButtonIcon } from '../';
 import { Apps } from '../../apps';
 
 type MenuHandler = {
-    onChange: Function
+    onChange: (app: Apps) => void
 }
 
 function GoMenu({ menuHandler }: { menuHandler: MenuHandler }) {
@@ -36,7 +36,6 @@ function GoMenu({ menuHandler }: { menuHandler: MenuHandler }) {
                 <div className='offcanvas-body d-flex flex-column justify-content-between'>
                     <div className='d-flex flex-column gap-3'>
                         <button className='btn bo-white t-white' onClick={() => onChange('home')}> {t('MAIN_MENU.HOME')} </button>
-                        <button className='btn bo-white t-white' onClick={() => onChange('intro')}> {t('MAIN_MENU.INTRODUCTION')} </button>
                         <button className='btn bo-white t-white' onClick={() => onChange('game')}> {t('MAIN_MENU.PLAY')} </button>
                         <button className='btn bo-white t-white' onClick={() => onChange('study')}> {t('MAIN_MENU.STUDY')} </button>
                         <button className='btn bo-white t-white' onClick={() => onChange('about')}> {t('MAIN_MENU.ABOUT')} </button>

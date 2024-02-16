@@ -13,13 +13,13 @@ function About() {
                     <span className='card-text badge b-red t-white'>v1.0.0</span>
                 </div>
             </div>
-            <div className={'card b-black bo-white t-white mb-3 w-75 ' + (isVerticalScreen ? '' : 'h-75')}>
+            {/*<div className={'card b-black bo-white t-white mb-3 w-75 ' + (isVerticalScreen ? '' : 'h-75')}>
                 <h5 className='card-header'>{t('ABOUT.BUGS_OR_SUGGESTIONS')}</h5>
                 <div className='card-body d-flex flex-column gap-2'>
                     <span className='card-text'>{t('ABOUT.THANK_YOU_FOR_REPORTING_ANY_BUG_OR_SEGGESTIONS')}</span>
                     <a className='btn b-red t-white' href=''>{t('ABOUT.REPORT_A_BUG')}</a>
                 </div>
-            </div>
+            </div>*/}
             <div className={'card b-black bo-white t-white mb-3 w-75 ' + (isVerticalScreen ? '' : 'h-75')}>
                 <h5 className='card-header'>{t('ABOUT.DEVELOPED_BY')}</h5>
                 <div className='card-body d-flex flex-column gap-2'>
