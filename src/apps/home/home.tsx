@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useScreenOrientation } from '../../utils/screenOrientation';
+import { Apps } from '..';
 import './home.scss';
 
 type HomeHandler = {
-    onChange: Function
+    onChange: (app: Apps) => void
 }
 
 function Home({homeHandler} : { homeHandler: HomeHandler }) {
@@ -15,7 +16,6 @@ function Home({homeHandler} : { homeHandler: HomeHandler }) {
             <div className='d-flex flex-colum align-items-center justify-content-evenly h-100' style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
                 <img src="./img/AppLogo.png" className='img-fluid w-75'></img>
                 <div className='d-flex flex-column gap-3'>
-                    <button className='btn btn-lg b-red t-white' onClick={() => homeHandler.onChange('intro')}>{t('MAIN_MENU.INTRODUCTION')}</button>
                     <button className='btn btn-lg b-red t-white' onClick={() => homeHandler.onChange('game')}>{t('MAIN_MENU.PLAY')}</button>
                     <button className='btn btn-lg b-red t-white' onClick={() => homeHandler.onChange('study')}>{t('MAIN_MENU.STUDY')}</button>
                     <button className='btn btn-lg b-red t-white' onClick={() => homeHandler.onChange('about')}>{t('MAIN_MENU.ABOUT')}</button>

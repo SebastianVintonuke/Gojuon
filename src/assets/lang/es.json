@@ -1,7 +1,6 @@
 {
     "MAIN_MENU": {
         "HOME": "Inicio",
-        "INTRODUCTION": "Introduccion",
         "PLAY": "Jugar",
         "STUDY": "Estudiar",
         "ABOUT": "Informacion"
@@ -18,5 +17,21 @@
     },
     "LANGUAGE_MODAL": {
         "LANGUAGE": "Idioma"
+    },
+    "GAME": {
+        "INFO_MODAL": {
+            "PLAY": "JUGAR",
+            "TRY_TO_GUESS_AS_MANY_KANAS_AS_POSSIBLE_BEFORE_TIME_RUNS_OUT": "Intenta adivinar tantos Kanas como sea posible antes de que se agote el tiempo."
+        },
+        "WON_MODAL": {
+            "CONGRATULATIONS": "¡Felicidades!",
+            "HOME": "Inicio",
+            "PLAY_AGAIN": "Jugar otra vez"
+        },
+        "LOST_MODAL": {
+            "TIME_IS_OVER": "Se acabó el tiempo",
+            "HOME": "Inicio",
+            "TRY_AGAIN": "Intentar otra vez"
+        }
     }
 }
