@@ -1,30 +1,18 @@
-# React + TypeScript + Vite
+## Mobile Mini-Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You can consult and practice the two syllabaries used in Japanese writing: Hiragana and Katakana.
 
-Currently, two official plugins are available:
+The styles are inspired by [this video clip](https://www.youtube.com/watch?v=-GlK_8qAM8Q&ab_channel=Mitski).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![image](https://github.com/SebastianVintonuke/Gojuon/assets/71727934/07c705a6-1563-44dd-926d-248dc8cf8260)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![image](https://github.com/SebastianVintonuke/Gojuon/assets/71727934/7c7976d5-9887-484f-b81b-706ca8847a65)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+### Sebastian M. Vintoñuke
+### Contact Information:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [GitHub](https://github.com/SebastianVintonuke)
+- [LinkedIn](https://www.linkedin.com/in/sebastian-vintoñuke-7ab06a161/)
+- sebastian.m.vintonuke@gmail.com
