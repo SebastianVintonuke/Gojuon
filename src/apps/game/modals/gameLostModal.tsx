@@ -3,7 +3,9 @@ import { Apps } from '../..';
 
 type gameLostModalHandler = {
     openApp: (app: Apps) => void,
-    isLostModalOpen: boolean
+    isLostModalOpen: boolean,
+    guessed: number,
+    toGuess: number
 }
 
 function GameLostModal({ gameLostModalHandler }: { gameLostModalHandler: gameLostModalHandler }) {
@@ -15,6 +17,7 @@ function GameLostModal({ gameLostModalHandler }: { gameLostModalHandler: gameLos
                 <div className='modal-content b-black bo-white t-white'>
                     <div className='modal-body d-flex flex-column justify-content-center align-items-center gap-3'>
                         <span className='text-center fs-5 t-white'>{t('GAME.LOST_MODAL.TIME_IS_OVER')}</span>
+                        <span className='text-center fs-5 t-white'>{gameLostModalHandler.guessed}/{gameLostModalHandler.toGuess}</span>
                         <div className='d-flex align-items-center justify-content-evenly gap-3'>
                             <div className='btn b-red t-white' onClick={() => { gameLostModalHandler.openApp('home') }}>{t('GAME.LOST_MODAL.HOME')}</div>
                             <div className='btn b-red t-white' onClick={() => { gameLostModalHandler.openApp('game') }}>{t('GAME.LOST_MODAL.TRY_AGAIN')}</div>

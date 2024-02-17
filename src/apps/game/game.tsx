@@ -28,6 +28,8 @@ function Game({ gameHandler }: { gameHandler: gameHandler }) {
     const [wrongOptionAnimationIsRuning, setWrongOptionAnimationIsRuning] = useState(false);
     const [isWonModalOpen, setIsWonModalOpen] = useState(false);
     const [isLostModalOpen, setIsLostModalOpen] = useState(false);
+    const [guessed, setGuessed] = useState(0);
+    const [toGuess, setToGuess] = useState(0);
 
     // to clean intervalId on unmount
     useEffect(() => { return () => {
@@ -37,6 +39,7 @@ function Game({ gameHandler }: { gameHandler: gameHandler }) {
 
     const startGame = (gameSettings: GameSettings) => {
         const listToGuess = createRandomGame(gameSettings);
+        setToGuess(listToGuess.length);
         setGame(listToGuess);
 
         const timeStart = DateTime.now()
@@ -62,6 +65,7 @@ function Game({ gameHandler }: { gameHandler: gameHandler }) {
 
     const tryOption = (option: string) => {
         if (game[current].right === option) {
+            setGuessed(guessed + 1);
             if ((game.length - 1) === current) {
                 clearInterval(intervalId);
                 gameWin();
@@ -110,8 +114,8 @@ function Game({ gameHandler }: { gameHandler: gameHandler }) {
     return (
         <div className='container d-flex flex-column flex-fill'>
             <GameInfoModal gameInfoModalHandler={{ startGame }}></GameInfoModal>
-            <GameWonModal gameWonModalHandler={{ isWonModalOpen, openApp: gameHandler.openApp }}></GameWonModal>
-            <GameLostModal gameLostModalHandler={{ isLostModalOpen, openApp: gameHandler.openApp }}></GameLostModal>
+            <GameWonModal gameWonModalHandler={{ isWonModalOpen, openApp: gameHandler.openApp, guessed, toGuess }}></GameWonModal>
+            <GameLostModal gameLostModalHandler={{ isLostModalOpen, openApp: gameHandler.openApp, guessed, toGuess }}></GameLostModal>
             <div className='d-flex flex-fill justify-content-center' style={{ flexDirection: (isVerticalScreen ? 'column' : 'row') }}>
                 <div className='d-flex flex-grow-1 justify-content-center align-items-center'>
                     <div id='ProgressBar' className='d-flex justify-content-center align-items-center text-center game-kana-circle b-red'>
